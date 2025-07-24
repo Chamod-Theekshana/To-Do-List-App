@@ -2,8 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:convert';
 import 'task.dart';
+import 'services/notification_service.dart';
 
-void main() => runApp(TodoApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await NotificationService.initialize();
+  runApp(TodoApp());
+}
 
 class TodoApp extends StatelessWidget {
   @override
@@ -79,6 +84,7 @@ class _TodoListState extends State<TodoList> {
       );
     });
     _saveTasks();
+    NotificationService.showTaskAddedNotification(title);
   }
 
   void _editTask(
@@ -103,10 +109,13 @@ class _TodoListState extends State<TodoList> {
   }
 
   void _deleteTask(String id) {
+    final task = tasks.firstWhere((t) => t.id == id);
+    final taskTitle = task.title;
     setState(() {
       tasks.removeWhere((t) => t.id == id);
     });
     _saveTasks();
+    NotificationService.showTaskDeletedNotification(taskTitle);
   }
 
   void _toggleTask(String id) {
