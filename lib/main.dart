@@ -3,14 +3,18 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:convert';
 import 'task.dart';
 import 'services/notification_service.dart';
+import 'package:timezone/data/latest.dart' as tz;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  tz.initializeTimeZones();
   await NotificationService.initialize();
   runApp(TodoApp());
 }
 
 class TodoApp extends StatelessWidget {
+  const TodoApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -30,6 +34,8 @@ class TodoApp extends StatelessWidget {
 }
 
 class TodoList extends StatefulWidget {
+  const TodoList({super.key});
+
   @override
   _TodoListState createState() => _TodoListState();
 }
@@ -70,10 +76,11 @@ class _TodoListState extends State<TodoList> {
     Priority priority,
     String category,
   ) {
+    final taskId = DateTime.now().millisecondsSinceEpoch.toString();
     setState(() {
       tasks.add(
         Task(
-          id: DateTime.now().millisecondsSinceEpoch.toString(),
+          id: taskId,
           title: title,
           description: description,
           dueDate: dueDate,
@@ -85,6 +92,9 @@ class _TodoListState extends State<TodoList> {
     });
     _saveTasks();
     NotificationService.showTaskAddedNotification(title);
+    if (reminderTime != null && reminderTime.isAfter(DateTime.now())) {
+      NotificationService.scheduleTaskReminder(taskId, title, reminderTime);
+    }
   }
 
   void _editTask(
@@ -106,6 +116,10 @@ class _TodoListState extends State<TodoList> {
       task.category = category;
     });
     _saveTasks();
+    NotificationService.cancelTaskReminder(id);
+    if (reminderTime != null && reminderTime.isAfter(DateTime.now())) {
+      NotificationService.scheduleTaskReminder(id, title, reminderTime);
+    }
   }
 
   void _deleteTask(String id) {
@@ -116,6 +130,7 @@ class _TodoListState extends State<TodoList> {
     });
     _saveTasks();
     NotificationService.showTaskDeletedNotification(taskTitle);
+    NotificationService.cancelTaskReminder(id);
   }
 
   void _toggleTask(String id) {
@@ -458,8 +473,9 @@ class _TodoListState extends State<TodoList> {
                                     firstDate: DateTime.now(),
                                     lastDate: DateTime(2030),
                                   );
-                                  if (date != null)
+                                  if (date != null) {
                                     setDialogState(() => selectedDate = date);
+                                  }
                                 },
                                 child: Text(
                                   selectedDate != null

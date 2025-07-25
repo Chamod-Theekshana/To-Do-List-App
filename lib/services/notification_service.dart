@@ -1,18 +1,27 @@
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'dart:async';
 
 class NotificationService {
-  static final FlutterLocalNotificationsPlugin _notifications = FlutterLocalNotificationsPlugin();
+  static final FlutterLocalNotificationsPlugin _notifications =
+      FlutterLocalNotificationsPlugin();
+  static final Map<String, Timer> _timers = {};
 
   static Future<void> initialize() async {
-    const androidSettings = AndroidInitializationSettings('@mipmap/ic_launcher');
+    const androidSettings = AndroidInitializationSettings(
+      '@mipmap/ic_launcher',
+    );
     const iosSettings = DarwinInitializationSettings();
-    const settings = InitializationSettings(android: androidSettings, iOS: iosSettings);
-    
+    const settings = InitializationSettings(
+      android: androidSettings,
+      iOS: iosSettings,
+    );
+
     await _notifications.initialize(settings);
-    
-    // Request notification permission for Android 13+
+
     await _notifications
-        .resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>()
+        .resolvePlatformSpecificImplementation<
+          AndroidFlutterLocalNotificationsPlugin
+        >()
         ?.requestNotificationsPermission();
   }
 
@@ -25,7 +34,10 @@ class NotificationService {
       priority: Priority.high,
     );
     const iosDetails = DarwinNotificationDetails();
-    const details = NotificationDetails(android: androidDetails, iOS: iosDetails);
+    const details = NotificationDetails(
+      android: androidDetails,
+      iOS: iosDetails,
+    );
 
     await _notifications.show(
       1,
@@ -44,7 +56,10 @@ class NotificationService {
       priority: Priority.high,
     );
     const iosDetails = DarwinNotificationDetails();
-    const details = NotificationDetails(android: androidDetails, iOS: iosDetails);
+    const details = NotificationDetails(
+      android: androidDetails,
+      iOS: iosDetails,
+    );
 
     await _notifications.show(
       2,
@@ -52,5 +67,43 @@ class NotificationService {
       'Task "$taskTitle" has been deleted',
       details,
     );
+  }
+
+  static Future<void> scheduleTaskReminder(
+    String taskId,
+    String taskTitle,
+    DateTime reminderTime,
+  ) async {
+    final duration = reminderTime.difference(DateTime.now());
+    if (duration.isNegative) return;
+
+    _timers[taskId] = Timer(duration, () async {
+      const androidDetails = AndroidNotificationDetails(
+        'reminder_channel',
+        'Task Reminders',
+        channelDescription: 'Scheduled reminders for tasks',
+        importance: Importance.high,
+        priority: Priority.high,
+      );
+      const iosDetails = DarwinNotificationDetails();
+      const details = NotificationDetails(
+        android: androidDetails,
+        iOS: iosDetails,
+      );
+
+      await _notifications.show(
+        taskId.hashCode,
+        'Task Reminder',
+        'Reminder: $taskTitle',
+        details,
+      );
+      _timers.remove(taskId);
+    });
+  }
+
+  static Future<void> cancelTaskReminder(String taskId) async {
+    _timers[taskId]?.cancel();
+    _timers.remove(taskId);
+    await _notifications.cancel(taskId.hashCode);
   }
 }
