@@ -1,45 +1,56 @@
-# Flutter Todo App
+# 📝 TodoGo
 
-A feature-rich todo application built with Flutter that helps you organize and manage your tasks efficiently.
+> **A beautiful, feature-rich todo application built with Flutter**
+
+TodoGo helps you organize and manage your tasks efficiently with a clean, intuitive interface and powerful features.
 
 ## Features
 
-### Core Functionality
-- ✅ Create, edit, and delete tasks
-- ✅ Mark tasks as complete/incomplete
-- ✅ Persistent storage using SharedPreferences
-- ✅ Clean and intuitive Material Design UI
+### ✨ Core Functionality
+- ✅ **Task Management**: Create, edit, and delete tasks effortlessly
+- ✅ **Progress Tracking**: Mark tasks as complete/incomplete with visual feedback
+- ✅ **Data Persistence**: Automatic saving using SharedPreferences
+- ✅ **Beautiful UI**: Clean and intuitive Material Design interface
+- ✅ **Custom Branding**: Beautiful TodoGo icon and splash screen
 
-### Advanced Features
-- 🎯 **Priority Levels**: Set tasks as Low, Medium, or High priority with color coding
-- 📁 **Categories**: Organize tasks with custom categories (Work, Personal, etc.)
-- 📅 **Due Dates**: Set deadlines for your tasks
-- ⏰ **Reminders**: Set notification times for important tasks
-- 🔍 **Search**: Find tasks by title or description
-- 🔧 **Filter & Sort**: Filter by category, priority, completion status
-- 📊 **Sort Options**: Sort by creation date, due date, or priority
-- 💾 **State Persistence**: Tasks automatically saved using SharedPreferences
-- 🔔 **Notifications**: Local notifications for task reminders
-- 👁️ **Task Visibility**: Toggle completed tasks visibility
+### 🚀 Advanced Features
+- 🎯 **Smart Prioritization**: Color-coded priority levels (Low, Medium, High)
+- 📁 **Category Organization**: Custom categories (Work, Personal, Shopping, etc.)
+- 📅 **Deadline Management**: Set and track due dates
+- ⏰ **Smart Reminders**: Custom notification times with TodoGo branding
+- 🔍 **Instant Search**: Real-time search by title or description
+- 🔧 **Advanced Filtering**: Filter by category, priority, and completion status
+- 📊 **Flexible Sorting**: Sort by creation date, due date, or priority
+- 💾 **Auto-Save**: Seamless state persistence across app sessions
+- 🔔 **Rich Notifications**: Custom TodoGo notifications for all platforms
+- 👁️ **View Control**: Toggle completed tasks visibility
+- 🎨 **Cross-Platform**: Consistent experience on Android, iOS, Web, Windows, and macOS
 
-## Screenshots
+## 📱 Screenshots
 
-*Add screenshots of your app here*
+<div align="center">
+  <img src="assets/images/todo.png" alt="TodoGo Icon" width="100" height="100">
+  <br>
+  <em>Beautiful custom icon and splash screen</em>
+</div>
+
+*Screenshots coming soon - Experience TodoGo yourself!*
 
 ## Getting Started
 
-### Prerequisites
-- Flutter SDK (>=2.0.0)
-- Dart SDK
-- Android Studio / VS Code
-- Android/iOS device or emulator
+### 📋 Prerequisites
+- **Flutter SDK** (>=3.7.2)
+- **Dart SDK** (included with Flutter)
+- **IDE**: Android Studio, VS Code, or IntelliJ IDEA
+- **Device**: Android/iOS device, emulator, or web browser
+- **Platform Support**: Android, iOS, Web, Windows, macOS, Linux
 
 ### Installation
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/Chamod-Theekshana/To-Do-List-App.git
-cd To-Do-List-App
+git clone <your-repository-url>
+cd todo
 ```
 
 2. Install dependencies:
@@ -58,69 +69,89 @@ flutter run
 dependencies:
   flutter:
     sdk: flutter
-  shared_preferences: ^2.0.15
-  flutter_local_notifications: ^latest_version # For task reminders
+  cupertino_icons: ^1.0.8
+  shared_preferences: ^2.2.2
+  flutter_local_notifications: ^17.2.3
+  timezone: ^0.9.0
+
+dev_dependencies:
+  flutter_launcher_icons: ^0.13.1
+  flutter_native_splash: ^2.3.10
 ```
 
 ## Usage
 
-### Creating Tasks
-1. Tap the **+** button
-2. Fill in task details:
-   - Title (required)
-   - Description (optional)
-   - Category
-   - Priority level (Low/Medium/High)
-   - Due date
-   - Reminder time
-3. Tap **Add** to save
+### 📝 Creating Tasks
+1. **Tap** the floating **+** button
+2. **Fill** in your task details:
+   - 📌 **Title** (required) - What needs to be done?
+   - 📄 **Description** (optional) - Additional details
+   - 🏷️ **Category** - Organize your tasks
+   - 🎯 **Priority** - Low, Medium, or High
+   - 📅 **Due Date** - Set your deadline
+   - ⏰ **Reminder** - Never miss important tasks
+3. **Save** and watch your productivity soar!
 
-### Managing Tasks
-- **Complete**: Tap the checkbox next to task
-- **Edit**: Tap the menu (⋮) and select Edit
-- **Delete**: Tap the menu (⋮) and select Delete
-- **View Details**: Tap on the task to see full description
+### ⚡ Managing Tasks
+- ✅ **Complete**: Tap the checkbox for instant satisfaction
+- ✏️ **Edit**: Tap the menu (⋮) to modify details
+- 🗑️ **Delete**: Remove completed or unwanted tasks
+- 👀 **View Details**: Tap any task to see full information
+- 🔔 **Smart Notifications**: Get reminded with TodoGo's custom notifications
 
-### Search & Filter
-- **Search**: Tap the search icon in the app bar to search by title/description
-- **Filter**: Tap the filter icon to:
-  - Filter by category
-  - Filter by priority level
-  - Sort by creation date/due date/priority
-- **Toggle Completed**: Use the visibility icon to show/hide completed tasks
+### 🔍 Search & Filter Magic
+- **🔎 Instant Search**: Find tasks by title or description in real-time
+- **🔧 Smart Filters**: 
+  - 🏷️ Filter by category (Work, Personal, etc.)
+  - 🎯 Filter by priority level
+  - ✅ Filter by completion status
+- **📊 Flexible Sorting**:
+  - 📅 Sort by creation date
+  - ⏰ Sort by due date
+  - 🎯 Sort by priority
+- **👁️ View Control**: Toggle completed tasks visibility with one tap
 
-## Project Structure
+## 🏗️ Project Structure
 
 ```
-lib/
-├── main.dart               # Main app entry point and UI implementation
-├── task.dart              # Task model and Priority enum
-├── services/
-│   └── notification_service.dart  # Notification handling
-└── widgets/              # Reusable UI components
+todo/
+├── lib/
+│   ├── main.dart                    # Main app entry point and UI
+│   ├── task.dart                    # Task model and Priority enum
+│   └── services/
+│       └── notification_service.dart # Notification handling
+├── assets/
+│   └── images/
+│       └── todo.png                 # App icon and splash screen
+├── android/                         # Android-specific files
+├── ios/                            # iOS-specific files
+├── web/                            # Web-specific files
+└── pubspec.yaml                    # Dependencies and configuration
 ```
 
-## Key Components
+## 🔧 Key Components
 
-### Task Model
-- `Task` class with properties:
-  - id: Unique identifier
-  - title: Task name
-  - description: Detailed task description
-  - dueDate: Task deadline
-  - reminderTime: Notification time
-  - priority: Priority enum (low, medium, high)
-  - category: Task category
-  - isCompleted: Completion status
+### 📋 Task Model
+Powerful `Task` class with comprehensive properties:
+- **🆔 id**: Unique identifier for each task
+- **📌 title**: Clear, concise task name
+- **📄 description**: Detailed task information
+- **📅 dueDate**: Deadline tracking
+- **⏰ reminderTime**: Smart notification scheduling
+- **🎯 priority**: Priority enum (Low, Medium, High)
+- **🏷️ category**: Flexible task categorization
+- **✅ isCompleted**: Real-time completion status
 
-### Main Features
-- **TodoList**: Main widget managing task state and UI
-- **Task Dialog**: Form for creating/editing tasks
-- **Search Dialog**: Search functionality with real-time filtering
-- **Filter Dialog**: Advanced filtering and sorting options
-- **NotificationService**: Local notifications management
+### 🎯 Main Features
+- **🏠 TodoList**: Beautiful main interface managing all task operations
+- **📝 Task Dialog**: Intuitive form for creating and editing tasks
+- **🔍 Search Dialog**: Lightning-fast search with real-time filtering
+- **🔧 Filter Dialog**: Advanced filtering and sorting capabilities
+- **🔔 NotificationService**: Smart notification system with TodoGo branding
+- **🎨 Custom Theming**: Consistent TodoGo branding across all platforms
+- **💾 Data Persistence**: Reliable task storage and retrieval
 
-## Testing
+## 🧪 Testing
 
 Run the tests using:
 ```bash
@@ -129,7 +160,7 @@ flutter test
 
 The project includes widget tests to ensure core functionality works as expected.
 
-## Contributing
+## 🤝 Contributing
 
 1. Fork the repository
 2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
@@ -139,19 +170,49 @@ The project includes widget tests to ensure core functionality works as expected
 6. Push to the branch (`git push origin feature/AmazingFeature`)
 7. Open a Pull Request
 
-## License
+## 📄 License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
 
-## Future Enhancements
+## 🚀 Future Enhancements
 
+### 🔔 Notifications & Reminders
 - [ ] Push notifications for reminders
+- [ ] Smart notification scheduling
+- [ ] Custom notification sounds
+
+### 👥 Collaboration
 - [ ] Task sharing between users
+- [ ] Team workspaces
+- [ ] Real-time collaboration
+
+### 🎨 Customization
 - [ ] Dark theme support with theme toggling
-- [ ] Export/Import functionality (JSON/CSV)
+- [ ] Custom task categories with icons
+- [ ] Personalized color schemes
+- [ ] Widget customization
+
+### 📊 Analytics & Export
 - [ ] Task statistics and analytics dashboard
+- [ ] Export/Import functionality (JSON/CSV)
+- [ ] Progress tracking and insights
+- [ ] Productivity reports
+
+### ☁️ Cloud & Sync
 - [ ] Cloud sync support
+- [ ] Cross-device synchronization
+- [ ] Backup and restore
+
+### ⚡ Advanced Features
 - [ ] Recurring tasks
 - [ ] Task priority auto-suggestion
-- [ ] Custom task categories with icons
 - [ ] Task attachments support
+- [ ] Voice input for tasks
+- [ ] AI-powered task suggestions
+
+---
+
+<div align="center">
+  <h3>🌟 Made with ❤️ using Flutter</h3>
+  <p><strong>TodoGo</strong> - Your productivity companion</p>
+</div>

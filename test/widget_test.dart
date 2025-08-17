@@ -7,7 +7,7 @@
 
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:todo/main.dart';
+import 'package:TODO/main.dart';
 
 void main() {
   testWidgets('Todo app smoke test', (WidgetTester tester) async {
