@@ -41,29 +41,45 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
-  # The "flutter_lints" package below contains a set of recommended lints to
-  # encourage good coding practices. The lint set provided by the package is
-  # activated in the `analysis_options.yaml` file located at the root of your
-  # package. See that file for information about deactivating specific lint
-  # rules and activating additional ones.
   flutter_lints: ^5.0.0
+  flutter_launcher_icons: ^0.13.1
+  flutter_native_splash: ^2.3.10
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
 # The following section is specific to Flutter packages.
 flutter:
-
-  # The following line ensures that the Material Icons font is
-  # included with your application, so that you can use the icons in
-  # the material Icons class.
   uses-material-design: true
+  
+  assets:
+    - assets/images/
 
-  # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
-  #   - images/a_dot_ham.jpeg
+# Flutter Launcher Icons configuration
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/images/todo.png"
+  min_sdk_android: 21
+  web:
+    generate: true
+    image_path: "assets/images/todo.png"
+  windows:
+    generate: true
+    image_path: "assets/images/todo.png"
+    icon_size: 48
+  macos:
+    generate: true
+    image_path: "assets/images/todo.png"
+
+# Flutter Native Splash configuration
+flutter_native_splash:
+  color: "#ffffff"
+  image: assets/images/todo.png
+  android_12:
+    image: assets/images/todo.png
+    icon_background_color: "#ffffff"
+  web: false
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

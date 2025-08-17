@@ -8,7 +8,7 @@ class NotificationService {
 
   static Future<void> initialize() async {
     const androidSettings = AndroidInitializationSettings(
-      '@mipmap/ic_launcher',
+      '@drawable/notification_icon',
     );
     const iosSettings = DarwinInitializationSettings();
     const settings = InitializationSettings(
@@ -32,6 +32,7 @@ class NotificationService {
       channelDescription: 'Notifications for task operations',
       importance: Importance.high,
       priority: Priority.high,
+      icon: '@drawable/notification_icon',
     );
     const iosDetails = DarwinNotificationDetails();
     const details = NotificationDetails(
@@ -54,6 +55,7 @@ class NotificationService {
       channelDescription: 'Notifications for task operations',
       importance: Importance.high,
       priority: Priority.high,
+      icon: '@drawable/notification_icon',
     );
     const iosDetails = DarwinNotificationDetails();
     const details = NotificationDetails(
@@ -84,6 +86,7 @@ class NotificationService {
         channelDescription: 'Scheduled reminders for tasks',
         importance: Importance.high,
         priority: Priority.high,
+        icon: '@drawable/notification_icon',
       );
       const iosDetails = DarwinNotificationDetails();
       const details = NotificationDetails(
